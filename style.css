@@ -2,17 +2,14 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgb(255 255 255 / 87%);
   background-color: #242424;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 body {
   margin: 0;
@@ -26,32 +23,41 @@ body {
 
 .background {
   background: radial-gradient(
-          circle at center,
-          darkred 0,
-          transparent 55%,
-          transparent 100%), radial-gradient(
-          circle at center,
-          darkgreen 0,
-          transparent 55%,
-          transparent 100%), radial-gradient(
-          circle at center,
-          darkblue 0,
-          transparent 55%,
-          transparent 100%), radial-gradient(
-          circle at center,
-          orange 0,
-          transparent 55%,
-          transparent 100%);
-);
+      circle at center,
+      darkred 0,
+      transparent 55%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at center,
+      darkgreen 0,
+      transparent 55%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at center,
+      darkblue 0,
+      transparent 55%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at center,
+      orange 0,
+      transparent 55%,
+      transparent 100%
+    );
   background-color: black;
   background-size: 200vmax 200vmax;
   background-repeat: no-repeat;
-  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-position:
+    0 0,
+    0 100%,
+    100% 0,
+    100% 100%;
   min-height: 100vh;
   height: auto;
   margin: 0;
   overflow-y: scroll;
-
   animation: 1ms background-position-diagonal;
   animation-direction: alternate;
   animation-iteration-count: infinite;
@@ -75,9 +81,18 @@ main {
 
 @keyframes background-position-diagonal {
   from {
-    background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+    background-position:
+      0 0,
+      0 100%,
+      100% 0,
+      100% 100%;
   }
+
   to {
-    background-position: 100% 100%, 100% 0%, 0% 100%, 0% 0%;
+    background-position:
+      100% 100%,
+      100% 0,
+      0 100%,
+      0 0;
   }
 }
