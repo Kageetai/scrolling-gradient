@@ -11,14 +11,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
+html {
+  /* a size or inline-size container */
+  container-type: size;
 }
 
-.container {
-  container: root / size;
-  height: 100vh;
-  overflow-y: scroll;
+html, body {
+  /* body and html both size to the viewport */
+  block-size: 100%;
+}
+
+body {
+  /* body is the root scroller */
+  /* this value doesn't propagate */
+  overflow: auto;
+  margin: 0;
 }
 
 .background {
@@ -54,10 +61,6 @@ body {
     0 100%,
     100% 0,
     100% 100%;
-  min-height: 100vh;
-  height: auto;
-  margin: 0;
-  overflow-y: scroll;
   animation: 1ms background-position-diagonal;
   animation-direction: alternate;
   animation-iteration-count: infinite;
@@ -71,7 +74,7 @@ main {
   color: darkgray;
 }
 
-@container (min-height: 101vh) {
+@container (height > 100%) {
   .background {
     animation-duration: 1ms;
     animation-iteration-count: unset;
