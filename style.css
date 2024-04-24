@@ -42,22 +42,29 @@ body {
       transparent 100%
     );
   background-color: black;
-  background-size: 200vmax 200vmax;
+  background-size: 200vh 200vw;
   background-position:
     0 0,
     0 100%,
     100% 0,
     100% 100%;
   animation: background-position-diagonal;
-  animation-duration: 1ms;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+body.scrolled {
   animation-timeline: scroll(y root);
+  animation-duration: 1ms;
+  animation-iteration-count: unset;
 }
 
 main {
   max-width: 80ch;
   margin: 0 auto;
   padding: 1rem;
-  color: darkgray;
+  color: lightgray;
 }
 
 @keyframes background-position-diagonal {
