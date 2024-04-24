@@ -76,5 +76,26 @@
         itaque libero nemo non praesentium quasi quis, quo sunt suscipit totam?
       </p>
     </main>
+
+    <div id="scrollObserver"></div>
   </body>
+
+  <script>
+    let className = "scrolled";
+    let observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(({ isIntersecting }) => {
+          if (isIntersecting) {
+            document.body.classList.add(className);
+          } else {
+            document.body.classList.remove(className);
+          }
+        });
+      },
+      {
+        rootMargin: "50%",
+      },
+    );
+    observer.observe(document.querySelector("#scrollObserver"));
+  </script>
 </html>
