@@ -11,60 +11,46 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  /* a size or inline-size container */
-  container-type: size;
-}
-
-html, body {
-  /* body and html both size to the viewport */
-  block-size: 100%;
-}
-
 body {
-  /* body is the root scroller */
-  /* this value doesn't propagate */
-  overflow: auto;
+  min-height: 100vh;
   margin: 0;
 }
 
 .background {
   background: radial-gradient(
       circle at center,
-      darkred 0,
-      transparent 55%,
+      hsl(0deg 100% 20%) 0,
+      transparent 50%,
       transparent 100%
     ),
     radial-gradient(
       circle at center,
-      darkgreen 0,
-      transparent 55%,
+      hsl(90deg 100% 20%) 0,
+      transparent 50%,
       transparent 100%
     ),
     radial-gradient(
       circle at center,
-      darkblue 0,
-      transparent 55%,
+      hsl(180deg 100% 20%) 0,
+      transparent 50%,
       transparent 100%
     ),
     radial-gradient(
       circle at center,
-      orange 0,
-      transparent 55%,
+      hsl(270deg 100% 20%) 0,
+      transparent 50%,
       transparent 100%
     );
   background-color: black;
   background-size: 200vmax 200vmax;
-  background-repeat: no-repeat;
   background-position:
     0 0,
     0 100%,
     100% 0,
     100% 100%;
-  animation: 1ms background-position-diagonal;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-duration: 10s;
+  animation: background-position-diagonal;
+  animation-duration: 1ms;
+  animation-timeline: scroll(y root);
 }
 
 main {
@@ -72,14 +58,6 @@ main {
   margin: 0 auto;
   padding: 1rem;
   color: darkgray;
-}
-
-@container (height > 100%) {
-  .background {
-    animation-duration: 1ms;
-    animation-iteration-count: unset;
-    animation-timeline: scroll(y nearest);
-  }
 }
 
 @keyframes background-position-diagonal {
