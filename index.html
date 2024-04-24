@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="style.css" />
+    <script type="module" src="/src/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scrolling Gradient</title>
   </head>
@@ -79,23 +80,4 @@
 
     <div id="scrollObserver"></div>
   </body>
-
-  <script>
-    let className = "scrolled";
-    let observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(({ isIntersecting }) => {
-          if (isIntersecting) {
-            document.body.classList.add(className);
-          } else {
-            document.body.classList.remove(className);
-          }
-        });
-      },
-      {
-        rootMargin: "50%",
-      },
-    );
-    observer.observe(document.querySelector("#scrollObserver"));
-  </script>
 </html>
