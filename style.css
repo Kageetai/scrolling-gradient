@@ -1,5 +1,5 @@
 @property --scroll-percentage {
-  syntax: "<number>";
+  syntax: "<length-percentage>";
   inherits: false;
   initial-value: 0;
 }
@@ -23,26 +23,23 @@ body {
 
 .background {
   background: radial-gradient(
-      circle at calc(var(--scroll-percentage) * 1%)
-        calc(var(--scroll-percentage) * 1%),
+      circle at var(--scroll-percentage) var(--scroll-percentage),
       hsl(0deg 100% 25% / 75%),
       transparent 50%
     ),
     radial-gradient(
-      circle at calc(100% - var(--scroll-percentage) * 1%)
-        calc(var(--scroll-percentage) * 1%),
+      circle at calc(100% - var(--scroll-percentage)) var(--scroll-percentage),
       hsl(90deg 100% 25% / 75%),
       transparent 50%
     ),
     radial-gradient(
-      circle at calc(100% - var(--scroll-percentage) * 1%)
-        calc(100% - var(--scroll-percentage) * 1%),
+      circle at calc(100% - var(--scroll-percentage))
+        calc(100% - var(--scroll-percentage)),
       hsl(180deg 100% 25% / 75%),
       transparent 50%
     ),
     radial-gradient(
-      circle at calc(var(--scroll-percentage) * 1%)
-        calc(100% - var(--scroll-percentage) * 1%),
+      circle at var(--scroll-percentage) calc(100% - var(--scroll-percentage)),
       hsl(270deg 100% 25% / 75%),
       transparent 50%
     );
@@ -67,10 +64,10 @@ main {
 
 @keyframes background-position-diagonal {
   from {
-    --scroll-percentage: 0;
+    --scroll-percentage: 0%;
   }
 
   to {
-    --scroll-percentage: 100;
+    --scroll-percentage: 100%;
   }
 }
