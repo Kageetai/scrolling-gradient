@@ -68,6 +68,6 @@ main {
   }
 
   to {
-    --scroll-percentage: 100%;
+    --scroll-percentage: 125%;
   }
 }
