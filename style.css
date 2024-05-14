@@ -50,7 +50,7 @@ body {
   animation-timing-function: ease-in-out;
 }
 
-body.scrolled {
+body.scrollable {
   animation-timeline: scroll(y root);
   animation-iteration-count: unset;
 }

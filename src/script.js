@@ -1,6 +1,6 @@
 import debounce from "lodash/debounce";
 
-let className = "scrolled";
+let className = "scrollable";
 let observer = new ResizeObserver(
   debounce((entries) => {
     entries.forEach(() => {
