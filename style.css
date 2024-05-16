@@ -64,6 +64,7 @@ main {
 }
 
 body.scrollable {
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
   animation-timeline: scroll(y root);
   animation-iteration-count: unset;
 }
