@@ -1,12 +1,8 @@
-/* Custom Property Definitions */
-
 @property --scroll-percentage {
   syntax: "<length-percentage>";
   inherits: false;
   initial-value: 0;
 }
-
-/* General Styles */
 
 @layer base, animations;
 
@@ -32,77 +28,61 @@
   }
 }
 
-/* Animated Background */
 @layer animations {
   :root {
-    background: radial-gradient(
-        circle at var(--scroll-percentage) var(--scroll-percentage),
-        hsl(0deg 100% 25% / 75%),
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at calc(100% - var(--scroll-percentage)) var(--scroll-percentage),
-        hsl(90deg 100% 25% / 75%),
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at calc(100% - var(--scroll-percentage))
-          calc(100% - var(--scroll-percentage)),
-        hsl(180deg 100% 25% / 75%),
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at var(--scroll-percentage) calc(100% - var(--scroll-percentage)),
-        hsl(270deg 100% 25% / 75%),
-        transparent 50%
-      );
+    --can-scroll: 0;
 
-    --can-scroll: initial; /* initial = false */
-    --animation-duration-if-can-scroll: var(--can-scroll) 1ms;
-    --animation-duration-if-cant-scroll: 15s;
-    --animation-iteration-count-if-can-scroll: var(--can-scroll) unset;
-    --animation-iteration-count-if-cant-scroll: infinite;
-    --animation-timeline-if-can-scroll: var(--can-scroll) scroll(y self);
-    --animation-timeline-if-cant-scroll: auto;
+    animation: detect-scroll;
+    animation-duration: 1ms;
+    animation-iteration-count: infinite;
+    animation-timeline: scroll(self);
+    animation-direction: normal;
+    animation-timing-function: linear;
 
-    /*animation: detect-scroll;*/
-    /*animation-duration: 1ms;*/
-    /*animation-iteration-count: infinite;*/
-    /*animation-timeline: scroll(self);*/
-    /*animation-direction: normal;*/
-    /*animation-timing-function: linear;*/
+    body {
+      background: radial-gradient(
+          circle at var(--scroll-percentage) var(--scroll-percentage),
+          hsl(0deg 100% 10%),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at calc(100% - var(--scroll-percentage))
+            var(--scroll-percentage),
+          hsl(90deg 100% 10%),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at calc(100% - var(--scroll-percentage))
+            calc(100% - var(--scroll-percentage)),
+          hsl(180deg 100% 10%),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at var(--scroll-percentage)
+            calc(100% - var(--scroll-percentage)),
+          hsl(270deg 100% 10%),
+          transparent 50%
+        );
+      animation: background-position-diagonal;
+      animation-duration: 15s;
+      animation-iteration-count: infinite;
+      animation-timeline: auto;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0, 0.25, 1, 0.75);
+    }
 
-    animation: detect-scroll, background-position-diagonal;
-    animation-duration: 1ms,
-      var(
-        --animation-duration-if-can-scroll,
-        var(--animation-duration-if-cant-scroll)
-      );
-    animation-iteration-count: infinite,
-      var(
-        --animation-iteration-count-if-can-scroll,
-        var(--animation-iteration-count-if-cant-scroll)
-      );
-    animation-timeline: scroll(self),
-      var(
-        --animation-timeline-if-can-scroll,
-        var(--animation-timeline-if-cant-scroll)
-      );
-
-    /* animation-duration: 1ms, 15s; */
-
-    /* animation-iteration-count: infinite, infinite; */
-
-    /* animation-timeline: scroll(self), var(--can-scroll, auto) scroll(y self); */
-
-    animation-direction: normal, alternate;
-    animation-timing-function: linear, ease-in-out;
+    @container style(--can-scroll: 1) {
+      body {
+        animation-duration: unset;
+        animation-timeline: scroll(y root);
+        animation-iteration-count: unset;
+      }
+    }
   }
 
   @keyframes detect-scroll {
-    from,
     to {
-      --can-scroll: ; /* space = true */
+      --can-scroll: 1;
     }
   }
 
@@ -112,7 +92,7 @@
     }
 
     to {
-      --scroll-percentage: 125%;
+      --scroll-percentage: 100%;
     }
   }
 }
