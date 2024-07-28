@@ -5,4 +5,4 @@ Make sure to make the viewport smaller, so the content is scrollable.
 
 **[CodePen](https://codepen.io/Kageetai/pen/dyEVZPv)**
 
-**Article to follow**
+**[Article explaining the process](https://kageetai.net/Projects/CSS/Scrolling-Gradient)**
