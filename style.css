@@ -30,59 +30,58 @@
 
 @layer animations {
   :root {
-    --can-scroll: 0;
+    --scroll: 0;
 
-    animation: detect-scroll;
-    animation-duration: 1ms;
+    /* stylelint-disable custom-property-no-missing-var-function */
+    timeline-scope: --scroll;
+    animation: detect-scroll forwards;
+    animation-timeline: --scroll;
+    container-name: --scroll; /* needed for style query */
+    scroll-timeline: --scroll;
+    overflow: auto; /* or hidden */
+    /* stylelint-enable custom-property-no-missing-var-function */
+  }
+
+  body {
+    background: radial-gradient(
+            circle at var(--scroll-percentage) var(--scroll-percentage),
+            hsl(0deg 100% 10%),
+            transparent 50%
+    ),
+    radial-gradient(
+            circle at calc(100% - var(--scroll-percentage)) var(--scroll-percentage),
+            hsl(90deg 100% 10%),
+            transparent 50%
+    ),
+    radial-gradient(
+            circle at calc(100% - var(--scroll-percentage)) calc(100% - var(--scroll-percentage)),
+            hsl(180deg 100% 10%),
+            transparent 50%
+    ),
+    radial-gradient(
+            circle at var(--scroll-percentage) calc(100% - var(--scroll-percentage)),
+            hsl(270deg 100% 10%),
+            transparent 50%
+    );
+    animation: background-position-diagonal;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
-    animation-timeline: scroll(self);
-    animation-direction: normal;
-    animation-timing-function: linear;
+    animation-timeline: auto;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0, 0.25, 1, 0.75);
+  }
 
+  @container --scroll style(--scroll: 1) {
     body {
-      background: radial-gradient(
-          circle at var(--scroll-percentage) var(--scroll-percentage),
-          hsl(0deg 100% 10%),
-          transparent 50%
-        ),
-        radial-gradient(
-          circle at calc(100% - var(--scroll-percentage))
-            var(--scroll-percentage),
-          hsl(90deg 100% 10%),
-          transparent 50%
-        ),
-        radial-gradient(
-          circle at calc(100% - var(--scroll-percentage))
-            calc(100% - var(--scroll-percentage)),
-          hsl(180deg 100% 10%),
-          transparent 50%
-        ),
-        radial-gradient(
-          circle at var(--scroll-percentage)
-            calc(100% - var(--scroll-percentage)),
-          hsl(270deg 100% 10%),
-          transparent 50%
-        );
-      animation: background-position-diagonal;
-      animation-duration: 15s;
-      animation-iteration-count: infinite;
-      animation-timeline: auto;
-      animation-direction: alternate;
-      animation-timing-function: cubic-bezier(0, 0.25, 1, 0.75);
-    }
-
-    @container style(--can-scroll: 1) {
-      body {
-        animation-duration: unset;
-        animation-timeline: scroll(y root);
-        animation-iteration-count: unset;
-      }
+      animation-duration: unset;
+      animation-timeline: scroll(y root);
+      animation-iteration-count: unset;
     }
   }
 
   @keyframes detect-scroll {
-    to {
-      --can-scroll: 1;
+    from, to {
+      --scroll: 1;
     }
   }
 
